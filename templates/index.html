@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Finder</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+        body {
+            background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #ffa726;
+            font-family: 'Pacifico', cursive;
+            font-size: 48px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px #000000, -1px -1px 0 #ffffff;
+        }
+        form {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        input[type="text"] {
+            width: 60%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background-color: rgba(30, 30, 30, 0.7);
+            color: #fff;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ffa726;
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ffb74d;
+        }
+        .recipe {
+            background-color: rgba(30, 30, 30, 0.7);
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            width: 80%;
+            box-shadow: 0 0 10px rgba(255, 167, 38, 0.2);
+        }
+        .recipe h2 {
+            color: #ffca28;
+        }
+        .section {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #444;
+        }
+        .ingredients {
+            color: #aed581;
+        }
+        .description {
+            color: #81d4fa;
+        }
+    </style>
+</head>
+<body>
+    <h1>🍲 Recipe Finder 🍲</h1>
+    <form method="post">
+        <input type="text" name="query" placeholder="e.g. chicken AND cheese or no sugar AND healthy">
+        <button type="submit">Search</button>
+    </form>
+    {% if recipes %}
+        {% for recipe in recipes %}
+            <div class="recipe">
+                <h2>{{ recipe['name'] }}</h2>
+                <div class="section ingredients">
+                    <strong>Ingredients:</strong><br>
+                    {{ recipe['ingredients'] }}
+                </div>
+                <div class="section description">
+                    <strong>Description:</strong><br>
+                    {{ recipe['description'] }}
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p style="text-align:center; color:#f44336; font-weight:bold;">No recipes found for that query.</p>
+    {% endif %}
+</body>
+</html>
